@@ -41,6 +41,15 @@ INFO Credentials loaded from the "rfj2t" profile in file "/var/home/lapthorn/.aw
 ? Region us-east-2
 ? Base Domain sandbox3017.opentlc.com
 ? Cluster Name cluster-rfj2t
-? Pull Secret [? for help] *******************************************************************************************************************************************************************```
+? Pull Secret [? for help] *******************************************************************************************************************************************************************
+```
 
+You can watch cluster deploy
+
+```
+export KUBECONFIG=ocp4/auth/kubeconfig
+watch 'oc get co'
+```
+
+Once complete update the machineset yaml files with the new values
 
