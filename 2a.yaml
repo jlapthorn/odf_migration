@@ -1,0 +1,94 @@
+apiVersion: machine.openshift.io/v1beta1
+kind: MachineSet
+metadata:
+  annotations:
+    capacity.cluster-autoscaler.kubernetes.io/labels: kubernetes.io/arch=amd64
+    machine.openshift.io/GPU: "0"
+    machine.openshift.io/memoryMb: "16384"
+    machine.openshift.io/vCPU: "4"
+  creationTimestamp: "2025-02-24T18:53:56Z"
+  generation: 1
+  labels:
+    machine.openshift.io/cluster-api-cluster: cluster-XXXXX-YYYYY
+  name: cluster-XXXXX-YYYYY-storage-us-east-2a
+  namespace: openshift-machine-api
+  resourceVersion: "16263"
+  uid: 0629c501-834a-4169-b8a9-f839b8c5dae7
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      machine.openshift.io/cluster-api-cluster: cluster-XXXXX-YYYYY
+      machine.openshift.io/cluster-api-machineset: cluster-XXXXX-YYYYY-storage-us-east-2a
+  template:
+    metadata:
+      labels:
+        machine.openshift.io/cluster-api-cluster: cluster-XXXXX-YYYYY
+        machine.openshift.io/cluster-api-machine-role: worker
+        machine.openshift.io/cluster-api-machine-type: worker
+        machine.openshift.io/cluster-api-machineset: cluster-XXXXX-YYYYY-storage-us-east-2a
+    spec:
+      lifecycleHooks: {}
+      metadata:
+        labels:
+          storage: "old"
+      providerSpec:
+        value:
+          ami:
+            id: ami-08997afda521c28fa
+          apiVersion: machine.openshift.io/v1beta1
+          blockDevices:
+          - ebs:
+              encrypted: true
+              iops: 0
+              kmsKey:
+                arn: ""
+              volumeSize: 120
+              volumeType: gp3
+          - deviceName: /dev/xvdb
+            ebs:
+              encrypted: true
+              iops: 0
+              kmsKey:
+                arn: ""
+              volumeSize: 200
+              volumeType: gp3
+
+          credentialsSecret:
+            name: aws-cloud-credentials
+          deviceIndex: 0
+          iamInstanceProfile:
+            id: cluster-XXXXX-YYYYY-worker-profile
+          instanceType: m6i.2xlarge
+          kind: AWSMachineProviderConfig
+          metadata:
+            creationTimestamp: null
+          metadataServiceOptions: {}
+          placement:
+            availabilityZone: us-east-2a
+            region: us-east-2
+          securityGroups:
+          - filters:
+            - name: tag:Name
+              values:
+              - cluster-XXXXX-YYYYY-node
+          - filters:
+            - name: tag:Name
+              values:
+              - cluster-XXXXX-YYYYY-lb
+          subnet:
+            filters:
+            - name: tag:Name
+              values:
+              - cluster-XXXXX-YYYYY-subnet-private-us-east-2a
+          tags:
+          - name: kubernetes.io/cluster/cluster-XXXXX-YYYYY
+            value: owned
+          userDataSecret:
+            name: worker-user-data
+status:
+  availableReplicas: 1
+  fullyLabeledReplicas: 1
+  observedGeneration: 1
+  readyReplicas: 1
+  replicas: 1
