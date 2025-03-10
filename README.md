@@ -53,3 +53,7 @@ watch 'oc get co'
 
 Once complete update the machineset yaml files with the new values
 
+```
+sed -i s/cluster-XXXXX-YYYYY/cluster-rfj2t-c8x4q/g' <file>
+```
+

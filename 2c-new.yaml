@@ -9,8 +9,8 @@ metadata:
   creationTimestamp: "2025-02-24T18:53:57Z"
   generation: 1
   labels:
-    machine.openshift.io/cluster-api-cluster: cluster-rfj2t-c8x4q
-  name: cluster-rfj2t-c8x4q-storage-new-us-east-2c
+    machine.openshift.io/cluster-api-cluster: cluster-XXXXX-YYYYY
+  name: cluster-XXXXX-YYYYY-storage-new-us-east-2c
   namespace: openshift-machine-api
   resourceVersion: "16329"
   uid: e1fa9b63-8609-450e-9acc-8db6f9500437
@@ -18,15 +18,15 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      machine.openshift.io/cluster-api-cluster: cluster-rfj2t-c8x4q
-      machine.openshift.io/cluster-api-machineset: cluster-rfj2t-c8x4q-storage-new-us-east-2c
+      machine.openshift.io/cluster-api-cluster: cluster-XXXXX-YYYYY
+      machine.openshift.io/cluster-api-machineset: cluster-XXXXX-YYYYY-storage-new-us-east-2c
   template:
     metadata:
       labels:
-        machine.openshift.io/cluster-api-cluster: cluster-rfj2t-c8x4q
+        machine.openshift.io/cluster-api-cluster: cluster-XXXXX-YYYYY
         machine.openshift.io/cluster-api-machine-role: worker
         machine.openshift.io/cluster-api-machine-type: worker
-        machine.openshift.io/cluster-api-machineset: cluster-rfj2t-c8x4q-storage-new-us-east-2c
+        machine.openshift.io/cluster-api-machineset: cluster-XXXXX-YYYYY-storage-new-us-east-2c
     spec:
       lifecycleHooks: {}
       metadata:
@@ -66,7 +66,7 @@ spec:
             name: aws-cloud-credentials
           deviceIndex: 0
           iamInstanceProfile:
-            id: cluster-rfj2t-c8x4q-worker-profile
+            id: cluster-XXXXX-YYYYY-worker-profile
           instanceType: m6i.2xlarge
           kind: AWSMachineProviderConfig
           metadata:
@@ -79,18 +79,18 @@ spec:
           - filters:
             - name: tag:Name
               values:
-              - cluster-rfj2t-c8x4q-node
+              - cluster-XXXXX-YYYYY-node
           - filters:
             - name: tag:Name
               values:
-              - cluster-rfj2t-c8x4q-lb
+              - cluster-XXXXX-YYYYY-lb
           subnet:
             filters:
             - name: tag:Name
               values:
-              - cluster-rfj2t-c8x4q-subnet-private-us-east-2c
+              - cluster-XXXXX-YYYYY-subnet-private-us-east-2c
           tags:
-          - name: kubernetes.io/cluster/cluster-rfj2t-c8x4q
+          - name: kubernetes.io/cluster/cluster-XXXXX-YYYYY
             value: owned
           userDataSecret:
             name: worker-user-data
